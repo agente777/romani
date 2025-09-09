@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Le Guerre Puniche - Guida di Ripasso</title>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.7;
+            color: #2c1810;
+            background: linear-gradient(135deg, #fef7e7 0%, #f5e6d3 100%);
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #8b2635 0%, #d4822a 100%);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(139, 38, 53, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+        
+        .nav-menu {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+        
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .nav-menu a {
+            color: #8b2635;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            border: 2px solid transparent;
+        }
+        
+        .nav-menu a:hover {
+            background: linear-gradient(135deg, #8b2635, #d4822a);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 38, 53, 0.3);
+        }
+        
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-left: 5px solid #8b2635;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            scroll-margin-top: 100px;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+        
+        .section h2 {
+            color: #8b2635;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #d4822a;
+            padding-bottom: 10px;
+        }
+        
+        .section h2::before {
+            content: '';
+            width: 8px;
+            height: 40px;
+            background: linear-gradient(135deg, #8b2635, #d4822a);
+            margin-right: 15px;
+            border-radius: 4px;
+        }
+        
+        .section h3 {
+            color: #d4822a;
+            font-size: 1.5rem;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+        
+        .section p {
+            margin-bottom: 15px;
+            text-align: justify;
+            font-size: 1.1rem;
+        }
+        
+        .section-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .timeline-container {
+            background: #f8f4f0;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #d4822a;
+            position: relative;
+        }
+        
+        .timeline-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .timeline-btn {
+            background: white;
+            color: #8b2635;
+            border: 2px solid #8b2635;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .timeline-btn.active,
+        .timeline-btn:hover {
+            background: linear-gradient(135deg, #8b2635, #d4822a);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 38, 53, 0.3);
+        }
+        
+        .timeline-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .timeline-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .timeline-item {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #d4822a;
+        }
+        
+        .timeline-date {
+            background: linear-gradient(135deg, #8b2635, #d4822a);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-title {
+            color: #8b2635;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 20px 0;
+        }
+        
+        .character-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid #d4822a;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .character-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .character-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            float: right;
+            margin-left: 15px;
+            margin-bottom: 15px;
+            border: 3px solid #d4822a;
+        }
+        
+        .character-name {
+            color: #8b2635;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .character-role {
+            color: #d4822a;
+            font-style: italic;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .battle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 20px 0;
+        }
+        
+        .battle-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .battle-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .battle-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .battle-content {
+            padding: 20px;
+        }
+        
+        .battle-title {
+            color: #8b2635;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .battle-date {
+            color: #d4822a;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .battle-details {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #f0f0f0;
+            animation: slideDown 0.3s ease;
+        }
+        
+        .battle-details.active {
+            display: block;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 200px; }
+        }
+        
+        .strategy-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin: 20px 0;
+        }
+        
+        .strategy-card {
+            background: linear-gradient(135deg, #f8f4f0 0%, #fff 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #d4822a;
+        }
+        
+        .strategy-card h4 {
+            color: #8b2635;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .strategy-card h4::before {
+            content: '⚔️';
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .strategy-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .strategy-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .strategy-list li::before {
+            content: '🏛️';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .strategy-list li:hover {
+            color: #8b2635;
+            font-weight: 600;
+        }
+        
+        .conclusion-highlight {
+            background: linear-gradient(135deg, #8b2635, #d4822a);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .conclusion-highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+        }
+        
+        .conclusion-highlight h3 {
+            color: white;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .conclusion-highlight p {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cross-reference {
+            background: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .cross-reference p {
+            margin: 0;
+            color: #2c3e50;
+        }
+        
+        .cross-reference a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .cross-reference a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #8b2635, #d4822a);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(139, 38, 53, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(139, 38, 53, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .section h2 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-menu ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .character-grid,
+            .battle-grid,
+            .strategy-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<div class="header-content">
+<h1>⚔️ LE GUERRE PUNICHE ⚔️</h1>
+<p>Il confronto epico tra Roma e Cartagine per il dominio del Mediterraneo</p>
+</div>
+</div>
+<!-- MENU DI NAVIGAZIONE -->
+<nav class="nav-menu">
+<ul>
+<li><a href="#cronologia">📅 Cronologia</a></li>
+<li><a href="#protagonisti">👥 Protagonisti</a></li>
+<li><a href="#battaglie">⚔️ Battaglie</a></li>
+<li><a href="#strategie">🧠 Strategie</a></li>
+<li><a href="#conseguenze">🏛️ Conseguenze</a></li>
+</ul>
+</nav>
+<!-- CRONOLOGIA INTERATTIVA -->
+<div class="section" id="cronologia">
+<h2>📅 Cronologia delle Guerre</h2>
+
+<p>Le Guerre Puniche furono una serie di tre conflitti che si estesero per oltre un secolo, determinando il destino del mondo antico e stabilendo il dominio romano sul Mediterraneo.</p>
+<div class="cross-reference">
+<p>💡 <strong>Collegamenti:</strong> I protagonisti di questi conflitti sono descritti nella sezione <a href="#protagonisti">Protagonisti</a>, mentre le battaglie decisive sono analizzate in <a href="#battaglie">Battaglie Chiave</a>.</p>
+</div>
+<div class="timeline-container">
+<div class="timeline-nav">
+<button class="timeline-btn active" onclick="showTimeline('prima', this)">Prima Guerra</button>
+<button class="timeline-btn" onclick="showTimeline('seconda', this)">Seconda Guerra</button>
+<button class="timeline-btn" onclick="showTimeline('terza', this)">Terza Guerra</button>
+<button class="timeline-btn" onclick="showTimeline('tutte', this)">Panoramica</button>
+</div>
+<div class="timeline-content active" id="prima">
+<div class="timeline-item">
+<div class="timeline-date">264 a.C.</div>
+<div class="timeline-title">Inizio del Conflitto</div>
+<p>Roma interviene in Sicilia per aiutare i Mamertini contro Siracusa e Cartagine. Prima volta che Roma combatte fuori dall'Italia continentale.</p>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">260 a.C.</div>
+<div class="timeline-title">Battaglia di Milazzo</div>
+<p>Prima grande vittoria navale romana grazie al corvus, ponte d'abbordaggio che trasformava i combattimenti navali in terrestri.</p>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">241 a.C.</div>
+<div class="timeline-title">Battaglia delle Egadi</div>
+<p>Vittoria navale decisiva di Roma. Cartagine chiede la pace e abbandona la Sicilia, pagando un pesante tributo.</p>
+</div>
+</div>
+<div class="timeline-content" id="seconda">
+<div class="timeline-item">
+<div class="timeline-date">218 a.C.</div>
+<div class="timeline-title">Annibale attraversa le Alpi</div>
+<p>Annibale parte dalla Spagna con 90.000 uomini e 37 elefanti, attraversa i Pirenei e le Alpi in un'impresa leggendaria.</p>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">217 a.C.</div>
+<div class="timeline-title">Battaglia del Trasimeno</div>
+<p>Annibale tende un'imboscata perfetta alle legioni romane. Il console Flaminio muore con 15.000 soldati.</p>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">216 a.C.</div>
+<div class="timeline-title">Battaglia di Canne</div>
+<p>Capolavoro tattico di Annibale: 80.000 romani morti. Roma sembra sull'orlo del collasso.</p>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">202 a.C.</div>
+<div class="timeline-title">Battaglia di Zama</div>
+<p>Scipione sconfigge Annibale in Africa. Fine della guerra e dell'impero cartaginese.</p>
+</div>
+</div>
+<div class="timeline-content" id="terza">
+<div class="timeline-item">
+<div class="timeline-date">149 a.C.</div>
+<div class="timeline-title">Inizio dell'Assedio</div>
+<p>Roma dichiara guerra a Cartagine con il pretesto di violazioni del trattato. Inizia l'assedio della città.</p>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">147 a.C.</div>
+<div class="timeline-title">Scipione Emiliano</div>
+<p>Il nipote adottivo di Scipione l'Africano assume il comando e intensifica l'assedio.</p>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">146 a.C.</div>
+<div class="timeline-title">Distruzione di Cartagine</div>
+<p>La città viene conquistata, rasa al suolo e cosparsa di sale. I sopravvissuti venduti come schiavi.</p>
+</div>
+</div>
+<div class="timeline-content" id="tutte">
+<div class="timeline-item">
+<div class="timeline-date">264-146 a.C.</div>
+<div class="timeline-title">118 anni di conflitti</div>
+<p>Tre guerre che trasformarono Roma da potenza regionale a padrona del Mediterraneo, eliminando per sempre la rivale cartaginese.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- PROTAGONISTI -->
+<div class="section" id="protagonisti">
+<h2>👥 Protagonisti Principali</h2>
+
+<p>Le Guerre Puniche videro emergere alcuni dei più grandi strateghi e condottieri della storia antica, le cui gesta sono ancora oggi studiate nelle accademie militari.</p>
+<div class="cross-reference">
+<p>🔗 <strong>Approfondimenti:</strong> Le strategie di questi comandanti sono analizzate nella sezione <a href="#strategie">Strategie e Tattiche</a>.</p>
+</div>
+<h3>Cartaginesi</h3>
+<div class="character-grid">
+<div class="character-card">
+
+<div class="character-name">Annibale Barca</div>
+<div class="character-role">Il Flagello di Roma (247-183 a.C.)</div>
+<p>Il più famoso generale cartaginese, considerato uno dei più grandi strateghi militari della storia. Figlio di Amilcare, giurò odio eterno contro Roma davanti agli altari di Cartagine quando aveva solo 9 anni. Famoso per l'attraversamento delle Alpi con elefanti da guerra e per le straordinarie vittorie di Canne, Trasimeno e Trebia che portarono Roma sull'orlo del collasso.</p>
+</div>
+<div class="character-card">
+
+<div class="character-name">Amilcare Barca</div>
+<div class="character-role">Il Fulmine (275-228 a.C.)</div>
+<p>Padre di Annibale e generale della Prima Guerra Punica. Soprannominato "Baraq" (fulmine) per la velocità delle sue manovre. Condusse una brillante campagna di guerriglia in Sicilia e successivamente conquistò gran parte della Spagna per Cartagine, preparando le basi economiche e militari per la rivincita contro Roma.</p>
+</div>
+<div class="character-card">
+
+<div class="character-name">Asdrubale Barca</div>
+<div class="character-role">Il Fratello Caduto (245-207 a.C.)</div>
+<p>Fratello di Annibale, rimase in Spagna per consolidare i domini cartaginesi. Nel 207 a.C. tentò di portare rinforzi ad Annibale attraversando a sua volta le Alpi, ma fu intercettato e ucciso nella battaglia del Metauro. La sua testa fu gettata nell'accampamento di Annibale come macabro messaggio.</p>
+</div>
+</div>
+<h3>Romani</h3>
+<div class="character-grid">
+<div class="character-card">
+
+<div class="character-name">Publio Cornelio Scipione l'Africano</div>
+<div class="character-role">Il Vincitore di Zama (236-183 a.C.)</div>
+<p>Il grande rivale di Annibale e uno dei più grandi generali romani. Conquistò la Spagna cartaginese con tattiche innovative e sconfisse definitivamente Annibale nella battaglia di Zama in Africa. Fu il primo romano a comprendere come battere il genio militare cartaginese, adottando tattiche flessibili e sfruttando la cavalleria alleata.</p>
+</div>
+<div class="character-card">
+
+<div class="character-name">Quinto Fabio Massimo</div>
+<div class="character-role">Il Temporeggiatore (280-203 a.C.)</div>
+<p>Dictator romano che sviluppò la strategia di logoramento contro Annibale dopo la disfatta di Canne. Evitando scontri diretti e colpendo le linee di rifornimento nemiche, riuscì a logorare l'esercito cartaginese. Inizialmente criticato come codardo, le sue tattiche salvarono Roma dalla disfatta totale.</p>
+</div>
+<div class="character-card">
+
+<div class="character-name">Marco Porcio Catone il Censore</div>
+<div class="character-role">Il Nemico di Cartagine (234-149 a.C.)</div>
+<p>Politico romano e accanito nemico di Cartagine. Concluse ogni suo discorso in Senato con la famosa frase "Delenda est Carthago" (Cartagine deve essere distrutta), spingendo Roma verso la Terza Guerra Punica. Rappresentava la fazione più intransigente e tradizionalista di Roma.</p>
+</div>
+</div>
+</div>
+<!-- BATTAGLIE CHIAVE -->
+<div class="section" id="battaglie">
+<h2>⚔️ Battaglie Decisive</h2>
+
+<p>Ogni guerra punica fu caratterizzata da scontri memorabili che cambiarono il corso della storia antica. Queste battaglie dimostrano l'evoluzione delle tattiche militari e l'importanza della strategia.</p>
+<div class="cross-reference">
+<p>👑 <strong>Da vedere anche:</strong> Le strategie utilizzate in queste battaglie sono approfondite nella sezione <a href="#strategie">Strategie e Tattiche</a>.</p>
+</div>
+<div class="battle-grid">
+<div class="battle-card" onclick="toggleBattleDetails(this)">
+
+<div class="battle-content">
+<div class="battle-title">Battaglia delle Isole Egadi</div>
+<div class="battle-date">241 a.C. - Prima Guerra Punica</div>
+<p>Vittoria navale decisiva di Roma che pose fine alla Prima Guerra Punica.</p>
+<div class="battle-details">
+<p><strong>Contesto:</strong> La flotta romana, guidata dal console Gaio Lutazio Catulo, intercettò quella cartaginese al largo della Sicilia occidentale mentre tentava di rifornire le guarnigioni assediate.</p>
+<p><strong>Esito:</strong> Victoria romana schiacciante che costrinse Cartagine a chiedere la pace e ad abbandonare la Sicilia.</p>
+</div>
+</div>
+</div>
+<div class="battle-card" onclick="toggleBattleDetails(this)">
+
+<div class="battle-content">
+<div class="battle-title">Battaglia del Trasimeno</div>
+<div class="battle-date">217 a.C. - Seconda Guerra Punica</div>
+<p>Brillante imboscata di Annibale che distrusse un'intera armata romana.</p>
+<div class="battle-details">
+<p><strong>Tattica:</strong> Annibale nascose il suo esercito sulle colline attorno al lago Trasimeno e attaccò i romani nella nebbia mattutina, quando erano in marcia.</p>
+<p><strong>Conseguenze:</strong> Il console Gaio Flaminio morì insieme a 15.000 soldati. Roma fu presa dal panico.</p>
+</div>
+</div>
+</div>
+<div class="battle-card" onclick="toggleBattleDetails(this)">
+
+<div class="battle-content">
+<div class="battle-title">Battaglia di Canne</div>
+<div class="battle-date">216 a.C. - Seconda Guerra Punica</div>
+<p>Capolavoro tattico di Annibale e una delle peggiori sconfitte romane.</p>
+<div class="battle-details">
+<p><strong>La Manovra:</strong> Annibale finse una ritirata al centro, attirando i romani in una trappola. Poi chiuse le ali su di loro in un perfetto accerchiamento.</p>
+<p><strong>Il Massacro:</strong> 80.000 romani morti, inclusi 80 senatori. Roma sembrò sull'orlo del collasso totale.</p>
+</div>
+</div>
+</div>
+<div class="battle-card" onclick="toggleBattleDetails(this)">
+
+<div class="battle-content">
+<div class="battle-title">Battaglia di Zama</div>
+<div class="battle-date">202 a.C. - Seconda Guerra Punica</div>
+<p>Lo scontro finale tra Scipione e Annibale in Africa.</p>
+<div class="battle-details">
+<p><strong>Il Duello dei Giganti:</strong> Scipione neutralizzò gli elefanti cartaginesi e sfruttò la superiorità della cavalleria alleata numida.</p>
+<p><strong>Fine di un'Era:</strong> Annibale fu definitivamente sconfitto, ponendo fine alla guerra e all'impero cartaginese.</p>
+</div>
+</div>
+</div>
+<div class="battle-card" onclick="toggleBattleDetails(this)">
+
+<div class="battle-content">
+<div class="battle-title">Assedio di Cartagine</div>
+<div class="battle-date">149-146 a.C. - Terza Guerra Punica</div>
+<p>L'assedio finale e la distruzione completa della grande rivale.</p>
+<div class="battle-details">
+<p><strong>Un Assedio Spietato:</strong> Scipione Emiliano condusse un assedio metodico durato tre anni, tagliando completamente i rifornimenti alla città.</p>
+<p><strong>La Fine:</strong> Cartagine fu conquistata, rasa al suolo e il territorio cosparso di sale. 50.000 sopravvissuti furono venduti come schiavi.</p>
+</div>
+</div>
+</div>
+<div class="battle-card" onclick="toggleBattleDetails(this)">
+
+<div class="battle-content">
+<div class="battle-title">Battaglia del Metauro</div>
+<div class="battle-date">207 a.C. - Seconda Guerra Punica</div>
+<p>La battaglia che spezzò le ultime speranze di Annibale.</p>
+<div class="battle-details">
+<p><strong>L'Intercettazione:</strong> I consoli romani Livio Salinatore e Claudio Nerone intercettarono Asdrubale prima che potesse ricongiungersi con Annibale.</p>
+<p><strong>Il Messaggio:</strong> La testa di Asdrubale fu gettata nell'accampamento di Annibale, che capì che ormai la guerra era perduta.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- STRATEGIE MILITARI -->
+<div class="section" id="strategie">
+<h2>🧠 Strategie e Tattiche</h2>
+
+<p>Le Guerre Puniche furono un laboratorio di innovazione militare, dove si sperimentarono nuove tattiche, tecnologie e strategie che influenzarono l'arte della guerra per secoli.</p>
+<div class="cross-reference">
+<p>⚔️ <strong>Esempi pratici:</strong> Queste strategie furono applicate nelle <a href="#battaglie">Battaglie Decisive</a> dai <a href="#protagonisti">grandi condottieri</a> dell'epoca.</p>
+</div>
+<div class="strategy-section">
+<div class="strategy-card">
+<h4>Innovazioni Cartaginesi</h4>
+<ul class="strategy-list">
+<li><strong>Uso degli elefanti da guerra:</strong> Animali addestrati per terrorizzare la cavalleria e la fanteria nemica. Efficaci nel causare panico iniziale, ma vulnerabili alle tattiche anti-elefante sviluppate dai romani.</li>
+<li><strong>Eserciti multietnici:</strong> Combinazione sapiente di mercenari iberici, guerrieri galli, cavalleria numida e truppe puniche, ognuna con specializzazioni specifiche.</li>
+<li><strong>Tattiche di accerchiamento:</strong> Annibale perfezionò l'arte della doppia tenaglia, come magistralmente dimostrato nella battaglia di Canne.</li>
+<li><strong>Guerra psicologica:</strong> Uso sistematico del terrore e della propaganda per demoralizzare il nemico e conquistare alleati.</li>
+<li><strong>Mobilità strategica:</strong> Movimenti rapidi e imprevedibili per sorprendere e confondere l'avversario, sfruttando la conoscenza del terreno.</li>
+</ul>
+</div>
+<div class="strategy-card">
+<h4>Risposta e Adattamento Romano</h4>
+<ul class="strategy-list">
+<li><strong>Strategia del logoramento:</strong> Fabio Massimo evitò battaglie decisive, preferendo logorare l'esercito nemico attaccando linee di rifornimento e alleati.</li>
+<li><strong>Superiorità numerica:</strong> Roma poteva mobilitare enormi quantità di truppe grazie al sistema delle alleanze italiche e alla demografia favorevole.</li>
+<li><strong>Controllo del mare:</strong> Sviluppo di una potente flotta che dominò progressivamente il Mediterraneo, tagliando i rifornimenti nemici.</li>
+<li><strong>Perfezionamento degli assedi:</strong> Tecniche d'assedio sempre più sofisticate, culminate nella metodica distruzione di Cartagine.</li>
+<li><strong>Flessibilità tattica:</strong> Capacità di imparare dalle sconfitte e adattare le proprie tattiche, come fece Scipione contro Annibale.</li>
+</ul>
+</div>
+</div>
+<h3>L'Evoluzione della Guerra Navale</h3>
+
+<p>La Prima Guerra Punica segnò l'ingresso di Roma nella guerra navale su grande scala. I Romani, tradizionalmente una potenza terrestre, furono costretti a costruire una flotta per competere con la talassocrazia cartaginese. Svilupparono il corvus, un ponte d'abbordaggio innovativo che trasformava gli scontri navali in combattimenti terrestri, sfruttando la comprovata superiorità della fanteria romana nel corpo a corpo.</p>
+<h3>La Rivoluzione Logistica</h3>
+<p>Le guerre puniche dimostrarono l'importanza cruciale della logistica nella guerra antica. Annibale dovette affrontare enormi difficoltà nel rifornire le sue truppe in territorio nemico per oltre 15 anni, mentre Roma poteva contare su una solida rete di alleati, colonie e basi navali. La capacità di mantenere eserciti sul campo per anni consecutivi divenne tanto decisiva quanto le vittorie tattiche in singole battaglie.</p>
+</div>
+<!-- CONSEGUENZE E SIGNIFICATO STORICO -->
+<div class="section" id="conseguenze">
+<h2>🏛️ Conseguenze e Significato Storico</h2>
+
+<p>Le Guerre Puniche non furono solo un conflitto militare, ma un punto di svolta che ridisegnò completamente l'equilibrio geopolitico del mondo antico, gettando le basi per l'impero romano.</p>
+<div class="cross-reference">
+<p>🔄 <strong>Ciclo completo:</strong> Torna alla <a href="#cronologia">Cronologia</a> per rivedere come questi eventi si svilupparono nel tempo, o scopri come i <a href="#protagonisti">protagonisti</a> forgiarono questo destino.</p>
+</div>
+<div class="conclusion-highlight">
+<h3>Il Trionfo di Roma</h3>
+<p>Con la vittoria finale su Cartagine, Roma eliminò la sua ultima rivale per il controllo del Mediterraneo, che i Romani iniziarono a chiamare "Mare Nostrum" (il nostro mare), preludio all'impero universale.</p>
+</div>
+<h3>Trasformazioni Politiche</h3>
+<p>Le guerre accelerarono la trasformazione di Roma da repubblica cittadina a potenza imperiale. La necessità di mantenere eserciti permanenti lontano da casa e governare territori vasti e diversi portò a profonde riforme politiche e sociali. Il Senato romano acquisì poteri straordinari in politica estera, mentre emergevano figure di comandanti-politici che avrebbero caratterizzato la crisi della tarda repubblica.</p>
+<h3>Impatto Economico e Sociale</h3>
+<div style="width: 100%; height: 200px; background: linear-gradient(135deg, #d4822a 0%, #f4d03f 50%, #8b2635 100%); border-radius: 8px; margin: 15px 0; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.1rem; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">💰 Monete dell'Impero Romano</div>
+<p>La vittoria portò enormi ricchezze a Roma attraverso bottini di guerra, tributi regolari e controllo esclusivo delle redditizie rotte commerciali mediterranee. Tuttavia, le guerre impoverirono anche molti piccoli agricoltori italici, costretti a lunghi servizi militari, contribuendo alla grave crisi agraria che avrebbe caratterizzato il II secolo a.C. L'afflusso massiccio di schiavi cartaginesi e di altre popolazioni conquistate trasformò radicalmente l'economia romana, accelerando il passaggio verso il latifondo.</p>
+<h3>Conseguenze Culturali</h3>
+<p>Il contatto prolungato con la raffinata cultura cartaginese e l'espansione nel Mediterraneo orientale esposero Roma a potenti influenze ellenistiche e orientali. Questo processo di "ellenizzazione" arricchì enormemente la cultura romana in ambiti come l'arte, la filosofia, la letteratura e la scienza, ma creò anche profonde tensioni sociali tra tradizionalisti (come Catone il Censore) e innovatori filelleni.</p>
+<h3>L'Eredità Strategica</h3>
+<p>Le tattiche sviluppate durante le guerre puniche, in particolare le geniali manovre di Annibale e le contromisure romane, continuarono a influenzare teorici militari e comandanti per oltre due millenni. La battaglia di Canne rimane tuttora un caso di studio fondamentale nelle accademie militari moderne. La dimostrata capacità romana di imparare dalle sconfitte più catastrofiche e adattare le proprie strategie divenne un tratto distintivo del loro inarrestabile successo militare.</p>
+<div class="conclusion-highlight">
+<h3>Un Mondo Trasformato</h3>
+<p>Alla fine delle Guerre Puniche, il mondo mediterraneo era irreversibilmente cambiato. Roma era ormai sulla strada maestra per diventare l'unico impero del mondo occidentale, mentre Cartagine era scomparsa per sempre dalla storia come entità politica indipendente.</p>
+</div>
+<h3>La Memoria Storica e l'Identità Romana</h3>
+<p>Le Guerre Puniche entrarono immediatamente nella memoria collettiva romana come mito fondatore dell'impero. Annibale divenne l'archetipo del nemico esterno per eccellenza ("Annibale ante portas!"), mentre Scipione l'Africano rappresentò l'ideale del generale romano vincitore. Queste guerre fornirono a Roma una narrazione epica coerente delle sue origini imperiali, celebrata in opere letterarie immortali da Nevio a Virgilio, da Livio a Silio Italico.</p>
+<p>Le lezioni fondamentali delle Guerre Puniche - sull'importanza della perseveranza di fronte alle avversità, dell'adattamento strategico, della superiorità logistica, dell'unità nazionale e della determinazione nel perseguire obiettivi a lungo termine - continuarono a essere studiate e sistematicamente applicate dai leader romani nelle conquiste successive, dalla Grecia alla Gallia, dall'Egitto alla Britannia, fino ai confini del mondo allora conosciuto.</p>
+</div>
+<div class="footer">
+<p>Le Guerre Puniche (264-146 a.C.) - Il conflitto che forgiò l'Impero Romano</p>
+<p>📚 Guida di ripasso interattiva per lo studio della storia antica</p>
+</div>
+<!-- Pulsante torna su -->
+<button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            ↑
+        </button>
+</div>
+<script>
+        // Funzione per mostrare timeline specifiche
+        function showTimeline(timelineId, buttonElement) {
+            // Nascondi tutti i contenuti timeline
+            const contents = document.querySelectorAll('.timeline-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Rimuovi classe active da tutti i bottoni
+            const buttons = document.querySelectorAll('.timeline-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Mostra il contenuto selezionato
+            const targetContent = document.getElementById(timelineId);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+            
+            // Attiva il bottone cliccato
+            if (buttonElement) {
+                buttonElement.classList.add('active');
+            }
+        }
+        
+        // Funzione per mostrare/nascondere dettagli battaglie
+        function toggleBattleDetails(card) {
+            const details = card.querySelector('.battle-details');
+            if (details) {
+                details.classList.toggle('active');
+            }
+        }
+        
+        // Scroll smooth per i link di navigazione
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Back to top button
+            const backToTopButton = document.querySelector('.back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            });
+            
+            if (backToTopButton) {
+                backToTopButton.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
